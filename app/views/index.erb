@@ -7,13 +7,11 @@
   <p><%= @errors %></p>
 <% end %>
 
-<div class="navbar-form pull-right">
-  <form action="/sessions/new" method="post" class="login-box">
-    <input type="text" name="email" class="input-small" value="<%= @user.email %>" placeholder="Email">
-    <input type="password" name="password" class="input-small" placeholder="Password">
-    <input type="submit" value="Login" class="btn">
-  </form>
-</div>
+<form action="/sessions/new" method="post" class="login-box">
+  <input type="text" name="email" class="input-small" value="<%= @user.email %>" placeholder="Email">
+  <input type="password" name="password" class="input-small" placeholder="Password">
+  <input type="submit" value="Login" class="btn">
+</form>
 
 <h1>Sign up</h1>
 
