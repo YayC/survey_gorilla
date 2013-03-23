@@ -4,15 +4,21 @@
 <!-- <%= params %> (used for debugging)-->
 <ol>
 
-<% @survey.questions.each do |q| %>
-  <li><%= q.content %> (<%= q.num_respondents %> respondents, <%= 
-  (q.num_respondents.to_f / @survey.num_respondents * 100).round(0) %>% of all survey respondents)</li>
+
+<% @question_strings.length.times do |i| %>
+  <li><%= @question_strings[i] %> (<%= @q_response_rates[i] %> respondents, <%= 
+  (@q_response_rates[i].to_f / @overall_respondents * 100).round(0) %>% of all survey respondents)</li>
   <dl>
-    <% q.choices.each_with_index do |c| %>
-      <dt><%= c.content %><br></dt>
-      <dd><%= (c.num_respondents.to_f / q.num_respondents * 100).round(0) %>% (total respondents:<%=  c.num_respondents  %>)</dd>
+    <% @choice_strings[i].length.times do |j| %>
+      <dt><%= @choice_strings[i][j] %></dt>
+      <dd>
+        <%= (@c_response_rates[i][j].to_f / @q_response_rates[i] * 100).round(0) %>% (total respondents:<%=  @c_response_rates[i][j]  %>) <br>
+      </dd>
     <% end %>
   </dl>
+  <br>
+  <div class="visualization" id="visualization<%= i %>">Loading bar chart...</div>
+  <br>
 <% end %>
 
 </ol>
@@ -23,17 +29,16 @@
 <script type="text/javascript">
   google.load('visualization', '1', {packages: ['corechart']});
 </script>
+
+<% @survey.questions.length.times do |i| %>
+<% end %>
  <script type="text/javascript">
       function drawVisualization() {
         // Create and populate the data table.
         var data = google.visualization.arrayToDataTable([
           ['Question #', 'Austria', 'Bulgaria', 'Denmark', 'Greece'],
-          ['2003',  1336060,    400361,    1001582,   997974],
-          ['2004',  1538156,    366849,    1119450,   941795],
-          ['2005',  1576579,    440514,    993360,    930593],
-          ['2006',  1600652,    434552,    1004163,   897127],
-          ['2007',  1968113,    393032,    979198,    1080887],
-          ['2008',  1901067,    517206,    916965,    1056036]
+          ['1',  1336060,    400361,    1001582,   997974],
+          
         ]);
       
         // Create and draw the visualization 
