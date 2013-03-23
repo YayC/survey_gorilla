@@ -17,7 +17,6 @@ post '/question/new' do
   erb :_create_survey_question, :layout => false
 end
 
-
 get '/survey/:survey_id' do
   
   @survey = Survey.find(params[:survey_id])
@@ -47,5 +46,3 @@ end
 put 'survey/edit' do
   erb :create_survey
 end
-
-

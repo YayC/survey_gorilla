@@ -5,4 +5,11 @@
 <a href='/survey/new'>Create a survey hoser</a>
 
 
+<% unless @user.created_surveys.to_a.empty? %>
+  <ul>
+  <% @user.created_surveys.each do |s| %>
+    <li><%= s.title %><br><%= s.description %></li>
+  <% end %>
+  </ul>
+<% end %>
 
