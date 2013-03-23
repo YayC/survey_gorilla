@@ -8,12 +8,6 @@
     <input type="submit" value="Let's get started!" class="button">
   </form>
 
-
-
-<button class="button"><a href="/survey/new">Create a survey, hoser.</a></button>
-=======
-
-
 <% unless @user.created_surveys.to_a.empty? %>
   <h2><%= @user.name.capitalize %>'s Surveys:</h2>
   <ol class="survey_list">
