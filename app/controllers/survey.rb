@@ -7,10 +7,6 @@ post '/survey/upload' do
   erb :create_survey
 end
 
-
-
-
-
 get '/survey/new' do
   erb :create_survey
 end

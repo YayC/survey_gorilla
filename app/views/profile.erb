@@ -1,14 +1,13 @@
-<h1>Profile<h1>
+<h1><%= @user.name.capitalize %>'s Profile<h1>
 
-<h2><%= @user.email %>, you made it to the profile! Frig yeah!!!!!!</h2>
+<h2>You made it to the profile! Frig yeah!!!!!!</h2>
 
 <p class="button"><a href='/survey/new'>Create a survey, hoser.</a></p>
 
 <% unless @user.created_surveys.to_a.empty? %>
-  <ul>
+  <ul class="survey_list">
   <% @user.created_surveys.each do |s| %>
-    <li><%= s.title %><br><%= s.description %></li>
+    <li><a href="/survey/<%= s.id %>"><%= s.title %></a><br><%= s.description %></li>
   <% end %>
   </ul>
 <% end %>
-

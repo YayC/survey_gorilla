@@ -1,12 +1,14 @@
-<nav>
+<header>
   <div class="container">
-    <h1 id="logo"><a href="/">Gorilla Monkey</a></h1>
+  <h1 id="logo"><a href="/">Gorilla Monkey</a></h1>
+  <nav>
     <ul class='nav'>
       <% if logged_in? %>
-         <li><a href="/profile"><%= current_user.email %></a></li>
+         <li><a href="/profile"><%= current_user.name %></a></li>
          <li>|</li> 
-        <li><a href="/user/logout">logout</a></li>
+        <li><a href="/user/logout">Log Out</a></li>
       <% end %>
     </ul>
+  </nav>
   </div>
-</nav>
+</header>
