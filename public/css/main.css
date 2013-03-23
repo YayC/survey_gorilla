@@ -60,3 +60,8 @@ ul {
   font-family: 'Comic Sans', sans-serif;
   padding-left: 30px;
 }
+
+div #visualization {
+  width: 600px; 
+  height: 400px;
+}
