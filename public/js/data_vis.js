@@ -13,7 +13,7 @@ function drawVisualization() {
         // Create and draw the visualization.
         new google.visualization.BarChart(document.getElementById('visualization')).
             draw(data,
-                 {title:"Yearly Coffee Consumption by Country",
+                 {title:"Question Stats",
                   width:600, height:400,
                   vAxis: {title: "Year"},
                   hAxis: {title: "Cups"}}
@@ -22,3 +22,4 @@ function drawVisualization() {
       
 
       google.setOnLoadCallback(drawVisualization);
+

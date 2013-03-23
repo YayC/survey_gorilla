@@ -44,6 +44,12 @@ post '/survey/:survey_id' do
     Answer.create( :choice_id => choice_id, :user_id => current_user.id  )
   end
 
+  redirect "/survey/#{params[:survey_id]}/results"
+end
+
+get '/survey/:survey_id/results' do
+  @survey = Survey.find(params[:survey_id])
+  
   erb :survey_results
 end
 
