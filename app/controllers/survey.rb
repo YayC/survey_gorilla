@@ -69,19 +69,21 @@ get '/survey/:survey_id/results' do
   @survey = Survey.find(params[:survey_id])
   @overall_respondents = @survey.num_respondents
 
-  @q_response_rates =[];
-  @c_response_rates = []
+  @q_response_rates =[]
+  @question_strings= []
+  @c_response_rates = [] #a nested array, each index of the inner array is a choice's num_respondents
+  @choice_strings = [] #nested array, each index of the inner array is a choice's content
 
   @survey.questions.each_with_index do |question, i|
-    puts question
-    puts "*" *500
-    p @c_response_rates
-    puts i
     @q_response_rates << question.num_respondents
+    @question_strings << question.content
 
     @c_response_rates[i] = []
+    @choice_strings[i] = []
+
     question.choices.each do |choice|
       @c_response_rates[i] << choice.num_respondents
+      @choice_strings[i] << choice.content
     end
   end
   
