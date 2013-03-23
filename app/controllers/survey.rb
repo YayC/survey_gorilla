@@ -1,3 +1,6 @@
+
+# survey creator routes
+
 post '/survey/upload' do
   @survey = current_created_survey
   picture = @survey.pictures.new  
@@ -7,13 +10,14 @@ post '/survey/upload' do
   erb :create_survey
 end
 
-get '/survey/new' do
-  erb :create_survey
-end
-
 post '/survey/new' do
   @survey = Survey.create(params.merge(:creator_id => current_user.id))
   set_created_survey(@survey)
+  redirect "/survey/edit/#{@survey.id}"
+end
+
+get '/survey/edit/:id' do
+  @survey = Survey.find(params[:id])
   erb :create_survey
 end
 
@@ -25,6 +29,16 @@ post '/question/new' do
   @survey = current_created_survey
   erb :_create_survey_question, :layout => false
 end
+
+get '/survey/delete/:id' do
+  if current_user.id == Survey.find(params[:id]).creator_id
+    Survey.delete(params[:id])
+  end    
+  redirect '/profile'
+end
+
+# survey taker routes
+
 
 get '/survey/:survey_id' do
   
@@ -58,9 +72,7 @@ get '/survey/:survey_id/results' do
   erb :survey_results
 end
 
-put 'survey/edit' do
-  erb :create_survey
-end
+
 
 
 
