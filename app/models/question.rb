@@ -6,8 +6,12 @@ class Question < ActiveRecord::Base
     associated_choices = self.choices.map{ |c| c.id }
     @answers = []
     associated_choices.each do |choice_id|
-      @answers << Answer.where("choice_id = ?", choice_id)
+      Answer.where("choice_id = ?", choice_id).each do |answer|
+        @answers << answer
+      end
     end
+
+    @answers
   end
 
   def num_respondents

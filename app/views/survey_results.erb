@@ -1,15 +1,16 @@
 <h1>Results for <%= @survey.title %></h1>
-<h3>Completed by <%= CompletedSurvey.where("id = ?", @survey.id).length %>
+<h3>Completed by <%= @survey.num_respondents %>
  respondents</h3>
 <!-- <%= params %> (used for debugging)-->
 <ol>
 
 <% @survey.questions.each do |q| %>
-  <li><%= q.content %> (<%= q.num_respondents %> respondents)</li>
+  <li><%= q.content %> (<%= q.num_respondents %> respondents, <%= 
+  (q.num_respondents.to_f / @survey.num_respondents * 100).round(0) %>% of all survey respondents)</li>
   <dl>
     <% q.choices.each_with_index do |c| %>
       <dt><%= c.content %><br></dt>
-      <dd><%=    %></dd>
+      <dd><%= (c.num_respondents.to_f / q.num_respondents * 100).round(0) %>% (total respondents:<%=  c.num_respondents  %>)</dd>
     <% end %>
   </dl>
 <% end %>
