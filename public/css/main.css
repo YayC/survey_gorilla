@@ -4,7 +4,7 @@ html {
 }
 
 .container {
-  width: 84%;
+  width: 80%;
   margin: 0 auto;
   padding: 0;
 }
@@ -55,7 +55,6 @@ header ul {
   list-style: none;
   float:left;
   font-size: 4em;
-  padding-left: 30px;
 }
 
 div #visualization {
@@ -69,18 +68,20 @@ div #visualization {
   margin: 32px 0;
   font-size: 24px;
   font-weight: bold;
+  background-color: #FFE540;
+  border: none;
+  border-radius: 8px;
+  display: block;
+  padding: 8px;
 }
 
 .button a {
-  background-color: #FFE540;
   color: #000;
   text-shadow: 0px 1px 1px rgba(255,255,255,.5);
-  padding: 16px;
-  border-radius: 8px;
   text-decoration: none;
 }
 
-.button a:hover {
+.button:hover {
   background-color: brown;
   color: #fff;
   text-shadow: 0px -1px 1px rgba(0,0,0,.5);
@@ -107,4 +108,22 @@ div #visualization {
   text-decoration: none;
   color: brown;
   text-shadow: 0px 1px 1px rgba(0,0,0,.5);
+}
+
+/* Create Survey Form */
+
+#create_survey {
+  border: 1px solid black;
+  width: 500px;
+  padding: 16px;
+}
+
+#create_survey input, #create_survey textarea {
+  width: 460px;
+  padding: 8px;
+  margin: 8px;
+}
+
+#create_survey {
+  widht: 100%;
 }

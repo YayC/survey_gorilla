@@ -1,9 +1,4 @@
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="/js/create_survey.js"></script>
-
-
-
-<h1>Create Survey</h1>
+<h1>Create Survey, Hoser</h1>
 
 <% if @survey %>
   <h2><%= @survey.title %></h2>
@@ -14,18 +9,13 @@
     <% end %>
 
   <div class="question_printer_3000"></div>
-
   <%=erb :_question_form %>
+
 <% else %>
-  <form action="/survey/new" method="post">
+  <form action="/survey/new" method="post" id="create_survey">
     <input type="text" name="title" placeholder="Survey Title">
     <textarea type="text" name="description" placeholder="Describe your amazing survey here, buddy."></textarea>
-    <input type="submit" value="Start Adding Questions!">
+    <input type="submit" value="Start Adding Questions!" class="button">
   </form>
 
 <% end %>
-
-
-
-
-
