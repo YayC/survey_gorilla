@@ -1,9 +1,8 @@
 <h1>Profile<h1>
 
-<h1><%= @user.email %>, you made it to the profile, frig-yeah!!!!!!<h1>
+<h2><%= @user.email %>, you made it to the profile! Frig yeah!!!!!!</h2>
 
-<a href='/survey/new'>Create a survey hoser</a>
-
+<p class="button"><a href='/survey/new'>Create a survey, hoser.</a></p>
 
 <% unless @user.created_surveys.to_a.empty? %>
   <ul>

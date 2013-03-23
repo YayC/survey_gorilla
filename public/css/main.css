@@ -1,4 +1,4 @@
-body {
+html {
   margin: 0;
   padding: 0;
 }
@@ -10,7 +10,6 @@ body {
 }
 
 nav {
-  float: right;
   background-color: #ffe540;   
   margin-bottom: 30px;
   width: 100%;
@@ -64,4 +63,25 @@ ul {
 div #visualization {
   width: 600px; 
   height: 400px;
+}
+
+/* Button */
+
+.button {
+  margin: 24px 0;
+}
+
+.button a {
+  background-color: #FFE540;
+  color: #000;
+  text-shadow: 0px 1px 1px rgba(255,255,255,.5);
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.button a:hover {
+  background-color: #666;
+  color: #fff;
+  text-shadow: 0px -1px 1px rgba(0,0,0,.75);
 }
