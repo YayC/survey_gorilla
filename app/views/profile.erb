@@ -7,7 +7,10 @@
 <% unless @user.created_surveys.to_a.empty? %>
   <ul class="survey_list">
   <% @user.created_surveys.each do |s| %>
-    <li><a href="/survey/<%= s.id %>"><%= s.title %></a><br><%= s.description %></li>
+    <li>
+      <h2><a href="/survey/<%= s.id %>"><%= s.title %></a></h2>
+      <p><%= s.description %></p>
+    </li>
   <% end %>
   </ul>
 <% end %>

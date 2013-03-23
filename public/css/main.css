@@ -20,8 +20,8 @@ header h1 {
 }
 
 header a {
-  color: #29AB87 ;
-  text-shadow: -1px -1px black;
+  color: #29AB87;
+  text-shadow: 0px -1px 1px rgba(0,0,0,.75);
   text-decoration: none;
 }
 
@@ -55,7 +55,6 @@ header ul {
   list-style: none;
   float:left;
   font-size: 4em;
-  font-family: 'Comic Sans', sans-serif;
   padding-left: 30px;
 }
 
@@ -67,20 +66,45 @@ div #visualization {
 /* Button */
 
 .button {
-  margin: 24px 0;
+  margin: 32px 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .button a {
   background-color: #FFE540;
   color: #000;
   text-shadow: 0px 1px 1px rgba(255,255,255,.5);
-  padding: 8px;
+  padding: 16px;
   border-radius: 8px;
   text-decoration: none;
 }
 
 .button a:hover {
-  background-color: #666;
+  background-color: brown;
   color: #fff;
-  text-shadow: 0px -1px 1px rgba(0,0,0,.75);
+  text-shadow: 0px -1px 1px rgba(0,0,0,.5);
+}
+
+/* Survey List on Profile Page */
+
+.survey_list {
+  padding: 0;
+  list-style: none;
+  padding-left: 16px;
+}
+
+.survey_list li {
+  margin-bottom: 16px;
+}
+
+.survey_list h2, .survey_list p {
+  margin: 0;
+  padding: 0;
+}
+
+.survey_list a {
+  text-decoration: none;
+  color: brown;
+  text-shadow: 0px 1px 1px rgba(0,0,0,.5);
 }
