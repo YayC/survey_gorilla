@@ -1,24 +1,22 @@
 get '/survey/new' do
-  erb :survey
+  erb :create_survey
 end
 
 post '/survey/new' do
-  @survey = current_user.create(params[:survey])
-  erb :survey
+  @survey = Survey.create(params.merge(:creator_id => current_user.id))
+  set_created_survey(@survey)
+  erb :create_survey
 end
 
 post '/question/new' do
-  @question = @survey.question.create(params[:question])
-  params[:choices].split('\n').each do |c|
-  @question.choices.create(c)
-  erb :survey
+  @question = current_created_survey.questions.create(:content => params[:content])
+  params[:choices].split("\r").each do |c|
+    @question.choices.create(:content => c.strip)
   end
+  @survey = current_created_survey
+  erb :create_survey
 end
 
-
-put '/survey/edit' do
-  erb :survey
-end
 
 get '/survey/:survey_id' do
   
@@ -44,6 +42,10 @@ post '/survey/:survey_id' do
   end
 
   erb :survey_results
+end
+
+put 'survey/edit' do
+  erb :create_survey
 end
 
 
