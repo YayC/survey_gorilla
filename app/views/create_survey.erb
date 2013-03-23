@@ -9,6 +9,10 @@
   <h2><%= @survey.title %></h2>
   <p><%= @survey.description %></p>
 
+    <% unless @survey.pictures.empty? %>
+      <img src="<%= @survey.pictures.first.image.gallery %>">
+    <% end %>
+
   <div class="question_printer_3000"></div>
 
   <%=erb :_question_form %>
@@ -18,12 +22,7 @@
     <textarea type="text" name="description" placeholder="Describe your amazing survey here, buddy."></textarea>
     <input type="submit" value="Start Adding Questions!">
   </form>
-  <h2>Add a Pic:</h2>
-<form class="form" form method="post" action="/albums/<%= @album.id %>/upload" enctype="multipart/form-data">
-  <input type="file" name="file">
-  <input type="submit" value="Upload" class="btn">
-</form>
-</div>
+
 <% end %>
 
 

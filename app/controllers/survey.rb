@@ -1,3 +1,16 @@
+post '/survey/upload' do
+  @survey = current_created_survey
+  picture = @survey.pictures.new  
+  picture.image.store!(params[:file])
+  picture.save
+  puts "complete"
+  erb :create_survey
+end
+
+
+
+
+
 get '/survey/new' do
   erb :create_survey
 end
@@ -5,10 +18,6 @@ end
 post '/survey/new' do
   @survey = Survey.create(params.merge(:creator_id => current_user.id))
   set_created_survey(@survey)
-  picture = @survey.picture.new 
-  picture.image.store!(params[:file])
-  picture.save
-
   erb :create_survey
 end
 
@@ -56,19 +65,6 @@ end
 put 'survey/edit' do
   erb :create_survey
 end
-
-post '/albums/:id/upload' do
-  album = Album.find(params[:id])
-  picture = album.pictures.new 
-  picture.image.store!(params[:file])
-
-  picture.save
-  
-
-  puts "complete"
-  redirect back
-end
-
 
 
 

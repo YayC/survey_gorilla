@@ -1,5 +1,7 @@
 <h1><%= @survey.title %></h1>
-
+<% unless @survey.pictures.empty? %>
+  <img src="<%= @survey.pictures.first.image.gallery %>">
+<% end %>
 <form method='post' action="/survey/<%= @survey.id %>">
 <ol>
 <% @survey.questions.each do |q| %>
