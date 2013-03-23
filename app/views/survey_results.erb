@@ -29,25 +29,58 @@
 <script type="text/javascript">
   google.load('visualization', '1', {packages: ['corechart']});
 </script>
+<% combined_stats_array = [] %>
+<% combined_stats_array[0] =["Question #"] %>
 
 <% @survey.questions.length.times do |i| %>
-<% end %>
+  <% stats_array = [] %>
+  <% stats_array[0] = ["Question #"]; stats_array[1] = [(i + 1).to_s] %>
+  <% combined_stats_array[i+1] = [(i + 1).to_s] %>
+  
+  <%  @choice_strings[i].each_with_index do |c, i| %>
+    <% stats_array[0] << c %>
+    <% combined_stats_array[0][i+1] = "#Choice \##{i+1}"%>
+  <% end %>
+
+  <%  @c_response_rates[i].each do |rate| %>
+    <% stats_array[1] << rate %>
+    <% combined_stats_array[i+1] << rate %>
+
+  <% end %>
+
  <script type="text/javascript">
       function drawVisualization() {
         // Create and populate the data table.
-        var data = google.visualization.arrayToDataTable([
-          ['Question #', 'Austria', 'Bulgaria', 'Denmark', 'Greece'],
-          ['1',  1336060,    400361,    1001582,   997974],
-          
-        ]);
+        console.log(<%= combined_stats_array %>)
+        var data = google.visualization.arrayToDataTable(<%= stats_array %>);
+      
+        // Create and draw the visualization 
+        new google.visualization.BarChart(document.getElementById('visualization<%= i %>')).
+            draw(data,
+                 {title:"Responses to '<%= @question_strings[i] %>'",
+                  width:600, height:400,
+                  vAxis: {title: "Question #"},
+                  hAxis: {title: "Respondents"}}
+            );
+      }
+      
+
+      google.setOnLoadCallback(drawVisualization);
+    </script>
+<% end %>
+<script type="text/javascript">
+      function drawVisualization() {
+        // Create and populate the data table.
+        console.log(<%= combined_stats_array %>)
+        var data = google.visualization.arrayToDataTable(<%= combined_stats_array %>);
       
         // Create and draw the visualization 
         new google.visualization.BarChart(document.getElementById('visualization')).
             draw(data,
-                 {title:"Yearly Coffee Consumption by Country",
+                 {title:"Survey Responses by Question",
                   width:600, height:400,
-                  vAxis: {title: "Year"},
-                  hAxis: {title: "Cups"}}
+                  vAxis: {title: "Question #"},
+                  hAxis: {title: "Respondents"}}
             );
       }
       

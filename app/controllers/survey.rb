@@ -86,6 +86,8 @@ get '/survey/:survey_id/results' do
       @choice_strings[i] << choice.content
     end
   end
+
+  
   
   erb :survey_results
 end
