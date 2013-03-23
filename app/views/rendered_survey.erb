@@ -1,0 +1,10 @@
+<h1><%= @survey = Survey.find(4).title %></h1>
+<ol>
+<% @survey.questions.each do |q| %>
+  <li><%= q.content %></li>
+  <form>
+  <% q.choices.each_with_index do |c| %>
+  </form>
+  <% end %>
+<% end %>
+</ol>
