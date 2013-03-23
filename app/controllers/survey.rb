@@ -21,17 +21,20 @@ put '/survey/edit' do
 end
 
 get '/survey/:survey_id' do
+  
   @survey = Survey.find(params[:survey_id])
-  puts "*"*100
-  puts current_user.surveys
-  puts current_user.surveys.map{|s| s.id }#.include(params[:survey_id])
+  if current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
+    redirect "/"
+  end
 
-    # redirect "/"
-  # end
   erb :rendered_survey
 end
 
 post '/survey/:survey_id' do
+  if current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
+    redirect "/"
+  end
+
   @survey = Survey.find(params[:survey_id])
   # @params = params to debug params
   CompletedSurvey.create( :user_id => current_user.id, 
