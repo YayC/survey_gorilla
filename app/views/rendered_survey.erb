@@ -1,10 +1,15 @@
-<h1><%= @survey = Survey.find(4).title %></h1>
+<h1><%= @survey.title %></h1>
+
+<form method='post' action="/survey/<%= @survey.id %>">
 <ol>
 <% @survey.questions.each do |q| %>
   <li><%= q.content %></li>
-  <form>
-  <% q.choices.each_with_index do |c| %>
-  </form>
+  
+    <% q.choices.each_with_index do |c| %>
+      <input type="radio" name="questions[<%= q.id %>]" value="<%= c.id %>"><%= c.content %><br>
   <% end %>
 <% end %>
 </ol>
+  <input type="submit" value="Submit">
+</form>
+

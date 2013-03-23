@@ -1,0 +1,17 @@
+<h1>Results for <%= @survey.title %></h1>
+<h3>Completed by <%= CompletedSurvey.where("id = ?", @survey.id).length %>
+ respondents</h3>
+<!-- <%= params %> (used for debugging)-->
+<ol>
+
+<% @survey.questions.each do |q| %>
+  <li><%= q.content %> (<%= q.num_respondents %> respondents)</li>
+  <dl>
+    <% q.choices.each_with_index do |c| %>
+      <dt><%= c.content %><br></dt>
+      <dd><%=    %></dd>
+    <% end %>
+  </dl>
+<% end %>
+
+</ol>
