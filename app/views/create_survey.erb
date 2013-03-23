@@ -1,14 +1,26 @@
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/js/create_survey.js"></script>
+
+
 
 <h1>Create Survey</h1>
 
 <% if @survey %>
-  <p><%=erb :_question_form %></p>
+  <h2><%= @survey.title %></h2>
+  <p><%= @survey.description %></p>
+
+  <div class="question_printer_3000"></div>
+
+  <%=erb :_question_form %>
+<% else %>
+  <form action="/survey/new" method="post">
+    <input type="text" name="title" placeholder="Survey Title">
+    <textarea type="text" name="description" placeholder="Describe your amazing survey here, buddy."></textarea>
+    <input type="submit" value="Add Question">
+  </form>
 <% end %>
 
 
-<form action="/survey/new" method="post">
-  <input type="text" name="title" placeholder="Survey Title">
-  <textarea type="text" name="description" placeholder="Describe your amazing survey here, buddy."></textarea>
-  <input type="submit" value="Add Questions!">
-</form>
+
+
 

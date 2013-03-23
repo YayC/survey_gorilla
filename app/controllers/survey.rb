@@ -11,10 +11,10 @@ end
 post '/question/new' do
   @question = current_created_survey.questions.create(:content => params[:content])
   params[:choices].split("\r").each do |c|
-    @question.choices.create(:content => c.strip)
+    @question.choices.create(:content => c.strip) unless c == ''
   end
   @survey = current_created_survey
-  erb :create_survey
+  erb :_create_survey_question, :layout => false
 end
 
 

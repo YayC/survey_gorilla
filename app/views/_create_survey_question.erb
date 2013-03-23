@@ -1,0 +1,8 @@
+  <% @survey.questions.each do |q| %>
+    <h3><%= q.content %></h3>
+    <ul>
+      <% q.choices.each do |c| %>
+      <li><%= c.content %></li>
+      <% end %>
+    </ul>
+  <% end %>
