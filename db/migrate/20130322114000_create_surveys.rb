@@ -4,6 +4,7 @@ class CreateSurveys < ActiveRecord::Migration
       t.integer  :creator_id
       t.string   :title
       t.text     :description
+      t.string   :picture
       t.timestamps
     end
   end

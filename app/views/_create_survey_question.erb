@@ -1,8 +1,8 @@
-  <% @survey.questions.each do |q| %>
-    <h3><%= q.content %></h3>
-    <ul>
-      <% q.choices.each do |c| %>
-      <li><%= c.content %></li>
-      <% end %>
-    </ul>
+<ol>
+<% @survey.questions.each do |q| %>
+  <li><%= q.content %></li>
+    <% q.choices.each_with_index do |c| %>
+      <input type="radio" name="questions[<%= q.id %>]" value="<%= c.id %>"><%= c.content %><br>
   <% end %>
+<% end %>
+</ol>
