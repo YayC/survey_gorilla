@@ -6,7 +6,6 @@ post '/survey/upload' do
   picture = @survey.pictures.new  
   picture.image.store!(params[:file])
   picture.save
-  puts "complete"
   erb :create_survey
 end
 
