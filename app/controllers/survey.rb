@@ -55,8 +55,7 @@ post '/survey/:survey_id' do
     redirect "/"
   end
 
-  @survey = Survey.find(params[:survey_id])
-  # @params = params to debug params
+  # @params = params #to debug params
   CompletedSurvey.create( :user_id => current_user.id, 
                           :survey_id => params[:survey_id] )
   params[:questions].each_value do |choice_id|
@@ -68,6 +67,23 @@ end
 
 get '/survey/:survey_id/results' do
   @survey = Survey.find(params[:survey_id])
+  @overall_respondents = @survey.num_respondents
+
+  @q_response_rates =[];
+  @c_response_rates = []
+
+  @survey.questions.each_with_index do |question, i|
+    puts question
+    puts "*" *500
+    p @c_response_rates
+    puts i
+    @q_response_rates << question.num_respondents
+
+    @c_response_rates[i] = []
+    question.choices.each do |choice|
+      @c_response_rates[i] << choice.num_respondents
+    end
+  end
   
   erb :survey_results
 end

@@ -4,15 +4,21 @@
 <!-- <%= params %> (used for debugging)-->
 <ol>
 
-<% @survey.questions.each do |q| %>
+
+<% @survey.questions.each_with_index do |q, i| %>
   <li><%= q.content %> (<%= q.num_respondents %> respondents, <%= 
   (q.num_respondents.to_f / @survey.num_respondents * 100).round(0) %>% of all survey respondents)</li>
   <dl>
     <% q.choices.each_with_index do |c| %>
-      <dt><%= c.content %><br></dt>
-      <dd><%= (c.num_respondents.to_f / q.num_respondents * 100).round(0) %>% (total respondents:<%=  c.num_respondents  %>)</dd>
+      <dt><%= c.content %></dt>
+      <dd>
+        <%= (c.num_respondents.to_f / q.num_respondents * 100).round(0) %>% (total respondents:<%=  c.num_respondents  %>) <br>
+      </dd>
     <% end %>
   </dl>
+  <br>
+  <div class="visualization" id="visualization<%= i %>">Loading bar chart...</div>
+  <br>
 <% end %>
 
 </ol>
@@ -23,6 +29,8 @@
 <script type="text/javascript">
   google.load('visualization', '1', {packages: ['corechart']});
 </script>
+
+
  <script type="text/javascript">
       function drawVisualization() {
         // Create and populate the data table.
