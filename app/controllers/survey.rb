@@ -6,7 +6,7 @@ post '/survey/upload' do
   picture = @survey.pictures.new  
   picture.image.store!(params[:file])
   picture.save
-  erb :create_survey
+  redirect "/survey/edit/#{@survey.id}"
 end
 
 post '/survey/new' do
@@ -26,6 +26,16 @@ post '/question/new' do
     @question.choices.create(:content => c.strip) unless c == ''
   end
   @survey = current_created_survey
+  erb :_create_survey_question, :layout => false
+end
+
+get '/question/delete/:id' do
+  if current_user.id == Question.find(params[:id]).survey.creator_id
+    Question.delete(params[:id])
+  end
+  @survey = current_created_survey
+  p "$$$$$$$$$$$$$$$$$$$$$$$$$$"
+  p @survey
   erb :_create_survey_question, :layout => false
 end
 
