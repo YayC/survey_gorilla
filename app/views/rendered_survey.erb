@@ -1,17 +1,21 @@
 <h1><%= @survey.title %></h1>
+
 <% unless @survey.pictures.empty? %>
   <img src="<%= @survey.pictures.first.image.gallery %>">
 <% end %>
+
 <form method='post' action="/survey/<%= @survey.id %>">
-<ol>
-<% @survey.questions.each do |q| %>
-  <li><%= q.content %></li>
-  
-    <% q.choices.each_with_index do |c| %>
-      <input type="radio" name="questions[<%= q.id %>]" value="<%= c.id %>"><%= c.content %><br>
+  <ol class="question_list">
+  <% @survey.questions.each do |q| %>
+    <li>
+      <%= q.content %>
+      <ul>
+        <% q.choices.each_with_index do |c| %>
+          <li><input type="radio" name="questions[<%= q.id %>]" value="<%= c.id %>"><%= c.content %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
-<% end %>
-</ol>
+  </ol>
   <input type="submit" value="Submit">
 </form>
-

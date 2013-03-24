@@ -126,3 +126,19 @@ div #visualization {
 #create_survey {
   widht: 100%;
 }
+
+/* Formatted Question List for survey/:survey_id */
+
+.question_list li {
+  margin: 8px 0;
+}
+
+.question_list ul {
+  margin-bottom: 32px;
+  list-style: none;
+  padding: 0;
+}
+
+.question_list ul li input {
+  margin-right: 8px;
+}
