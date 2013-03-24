@@ -102,7 +102,7 @@ header ul {
   padding: 0;
 }
 
-.survey_list a {
+.survey_list a, .survey-title {
   text-decoration: none;
   color: brown;
   text-shadow: 0px 1px 1px rgba(0,0,0,.5);

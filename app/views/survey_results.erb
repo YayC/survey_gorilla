@@ -1,5 +1,5 @@
-<h1>Results for <%= @survey.title %></h1>
-<h3>Completed by <%= @survey.num_respondents %>
+<h1>Results for <span class="survey-title"><%= @survey.title %></span></h1>
+<h3>Completed by <%= @overall_respondents %>
  respondents</h3>
 <!-- <%= params %> (used for debugging)-->
 
@@ -43,6 +43,7 @@
 <script type="text/javascript">
   google.load('visualization', '1', {packages: ['corechart']});
 </script>
+
 <% combined_stats_array = [] %>
 <% combined_stats_array[0] =["Question #"] %>
 
@@ -53,7 +54,7 @@
   
   <%  @choice_strings[i].each_with_index do |c, i| %>
     <% stats_array[0] << c %>
-    <% combined_stats_array[0][i+1] = "#Choice \##{i+1}"%>
+    <% combined_stats_array[0][i+1] = "Choice \##{i+1}"%>
   <% end %>
 
   <%  @c_response_rates[i].each do |rate| %>
@@ -71,9 +72,11 @@
         // Create and draw the visualization 
         new google.visualization.BarChart(document.getElementById('visualization<%= i %>')).
             draw(data,
-                 {title:"Responses to '<%= @question_strings[i] %>'",
+                 {title:"\"<%= @question_strings[i] %>\"",
                   width:300, height:200,
-                  vAxis: {title: "Question #"},
+                  legend: "none",
+                  bar: {groupWidth: '90%'},
+                  vAxis: {viewWindowMode: 'maximized', textPosition:'none'},
                   hAxis: {title: "Respondents"}}
             );
       }
@@ -93,6 +96,7 @@
             draw(data,
                  {title:"Survey Responses by Question",
                   width:600, height:400,
+                  bar: {groupWidth: '80%'},
                   vAxis: {title: "Question #"},
                   hAxis: {title: "Respondents"}}
             );
