@@ -47,5 +47,26 @@ $(document).ready(function() {
     });
   };     
 
+
+
+  $(function() {
+      $('#activator').click(function(){
+          $('#overlay').fadeIn('fast',function(){
+              $('#box').animate({'top':'300px'},1000);
+          });
+      });
+      $('#boxclose').click(function(){
+          $('#box').animate({'top':'-600px'},1000,function(){
+              $('#overlay').fadeOut('fast');
+          });
+      });
+   
+  });
+
+
   reset_question_listeners();
+
 });
+
+
+

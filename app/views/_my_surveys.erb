@@ -9,6 +9,7 @@
               <li><img src="<%= s.pictures.first.image.mini_thumb %>"></li>
             <% end %>
         <li><form><label for="title" >Permalink: </label><input type="text" size="25" name="title" value="http://localhost:9292/survey/<%= s.id %>"></form></li>
+        <li><a href="/survey/<%= s.id %>/results">Results</a></li>
         <li><a href="/survey/edit/<%= s.id %>">Edit</a></li>
         <li><a class="delete" href="/survey/delete/<%= s.id %>">Delete</a></li>
       </ul>
