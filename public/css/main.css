@@ -36,8 +36,14 @@ header h1 {
 
 header a {
   color: #29AB87;
-  text-shadow: 0px -1px 1px rgba(0,0,0,.5);
+  text-shadow: 0 -1px 1px rgba(0,0,0,.5);
   text-decoration: none;
+}
+
+header a:hover {
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  position:relative;
+  top:-2px;
 }
 
 nav {
