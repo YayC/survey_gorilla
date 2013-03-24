@@ -56,8 +56,6 @@ header ul {
   font-size: 4em;
 }
 
-
-
 /* Button */
 
 .button {
@@ -118,10 +116,6 @@ header ul {
 
 #create_survey[input=submit] {
   width: 500px;
-}
-
-#create_survey {
-  width: 100%;
 }
 
 /* Formatted Question List for survey/:survey_id */
