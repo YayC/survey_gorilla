@@ -22,10 +22,11 @@ u = User.new(name: "test", email: "test@example.com"); u.password="test"; u.save
 end
 
 100.times do
-  cs = CompletedSurvey.create( user_id: rand(1..100), survey_id: rand(1..100))
+  cs = CompletedSurvey.new( user_id: rand(1..100), survey_id: rand(1..100))
   Survey.find(cs.survey_id).questions.each do |question|
     choice_id = question.choices.sample.id
     Answer.create( choice_id: choice_id, user_id: cs.user_id)
   end
+  cs.save
 end
 
