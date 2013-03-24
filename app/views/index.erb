@@ -22,9 +22,14 @@
 <% end %>
 
 
-<form action="/users/new" method="post" class="login-box">
-    <input type="text" name="signup[name]" class="input-small" value="<%= @user.name %>" placeholder="Name">
-  <input type="text" name="signup[email]" class="input-small" value="<%= @user.email %>" placeholder="Email">
-  <input type="password" name="signup[password]" class="input-small" placeholder="Password">
+<form id="signup" action="/users/new" method="post" class="login-box">
+  <span class="hidden errors" id="name-errors"></span>
+  <input type="text" name="signup[name]" class="input-small" required pattern="J|j|\w\w+" value="<%= @user.name %>" placeholder="Name">
+  <span class="hidden errors" id="email-errors"></span>
+  <input type="text" name="signup[email]" class="input-small" required pattern="([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})" value="<%= @user.email %>" placeholder="Email">
+  <span class="hidden errors" id="password-errors"></span>
+  <input type="password" name="signup[password]" class="input-small" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
   <input type="submit" value="Sign Up" class="btn">
 </form>
+
+<script src="/js/signup_validations.js"></script>

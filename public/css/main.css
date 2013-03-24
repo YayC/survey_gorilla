@@ -211,6 +211,52 @@ div #errors {
   background-color: yellow;
 }
 
+.errors {
+  color:red;
+}
+
+span#email-errors {
+  position:absolute;
+  bottom:25px;
+  right:256px;
+
+}
+
+span#name-errors {
+  position:absolute;
+  bottom:25px;
+  right:463px;
+}
+
+span#password-errors {
+  position:absolute;
+  top:45px;
+  right:463px;
+}
+
+.hidden {
+  display:none;
+}
+
+.input-small {
+  float:left;
+}
+
+form {
+  position:relative;
+}
+
+input:focus:invalid {
+  background-image: url(/images/warn.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+input:required:valid {
+  background-image: url(/images/check.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
 /* Footer */
 
 footer {
