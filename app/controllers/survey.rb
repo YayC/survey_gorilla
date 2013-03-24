@@ -6,8 +6,7 @@ post '/survey/upload' do
   picture = @survey.pictures.new  
   picture.image.store!(params[:file])
   picture.save
-  puts "complete"
-  erb :create_survey
+  redirect "/survey/edit/#{@survey.id}"
 end
 
 post '/survey/new' do
@@ -30,11 +29,22 @@ post '/question/new' do
   erb :_create_survey_question, :layout => false
 end
 
+get '/question/delete/:id' do
+  if current_user.id == Question.find(params[:id]).survey.creator_id
+    Question.delete(params[:id])
+  end
+  @survey = current_created_survey
+  p "$$$$$$$$$$$$$$$$$$$$$$$$$$"
+  p @survey
+  erb :_create_survey_question, :layout => false
+end
+
 get '/survey/delete/:id' do
   if current_user.id == Survey.find(params[:id]).creator_id
     Survey.delete(params[:id])
-  end    
-  redirect '/profile'
+  end
+  @user = current_user
+  erb :_my_surveys, :layout => false
 end
 
 # survey taker routes

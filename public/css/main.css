@@ -13,7 +13,11 @@ body{
 }
 
 header {
-  background-color: #ffe540;
+  background: -webkit-linear-gradient(bottom, #e8cf48, #ffe540);
+}
+
+header .container {
+  min-width: 900px
 }
 
 header, h1, h2, h3 {
