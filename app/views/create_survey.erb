@@ -1,4 +1,4 @@
-<h1>Edit Your Survey, Hoser</h1>
+<h1>Edit Your Survey, <%= current_user.name %></h1>
 
 <% if @survey %>
   <h2><%= @survey.title %></h2>
@@ -7,10 +7,9 @@
 <div id="image_upload">
   <%= erb :_survey_image %>
 </div>
-
+<% if @survey.pictures.empty? %>
+  <%= erb :_add_pic_form %>
+<% end %>
   <div class="question_printer_3000"><%= erb :_create_survey_question %></div>
-  <% if @survey.pictures.empty? %>
-    <%= erb :_add_pic_form %>
-  <% end %>
   <%= erb :_question_form %>
 <% end %>

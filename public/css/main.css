@@ -1,15 +1,18 @@
-html {
+html,
+body {
   margin: 0;
   padding: 0;
 }
+
 body{
   margin-bottom: 15px;
+  background-image: url('/assets/p6.png');
 }
 
 .container {
   width: 80%;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 0 24px 0;
 }
 
 header {
@@ -17,7 +20,8 @@ header {
 }
 
 header .container {
-  min-width: 900px
+  min-width: 900px;
+  padding: 0;
 }
 
 header, h1, h2, h3 {
@@ -56,8 +60,8 @@ header ul {
 .nav li {
   display: inline;
   color: brown;
-  font-size: 2em;
-  padding: 18px;
+  font-size: 32px;
+  padding: 16px;
   line-height: 128px;
 }
 
@@ -77,6 +81,7 @@ header ul {
   border-radius: 8px;
   padding: 8px;
   text-shadow: 0px 1px 1px rgba(255,255,255,.5);
+  font-family: 'Wellfleet', cursive;
 }
 
 .button:hover {
@@ -182,4 +187,13 @@ div .right-column {
 div #errors {
   color:red;
   background-color: yellow;
+}
+
+/* Footer */
+
+footer {
+  height: 24px;
+  width: 100%;
+  color: rgba(0,0,0,.25);
+  text-align: center;
 }

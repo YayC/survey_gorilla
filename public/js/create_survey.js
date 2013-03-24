@@ -15,8 +15,8 @@ $(document).ready(function() {
     .done(function(server_data, textStatus, jqXHR) {
       console.log(server_data);
 
-
       $(".question_printer_3000").html(server_data);
+      reset_question_listeners();
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
       console.log("ERROR -- " + errorThrown);
@@ -24,27 +24,28 @@ $(document).ready(function() {
     })
   });
 
+  function reset_question_listeners() {
+    $('.delete_question').click(function(e) {
+      e.preventDefault();
 
-  $('.delete_question').click(function(e) {
-    e.preventDefault();
+       $.ajax({
+        type: 'get',                
+        url: this.href,
+        data: '',                       
+      })
+      .done(function(server_data, textStatus, jqXHR) {
+        console.log("success" + server_data);
 
-     $.ajax({
-      type: 'get',                
-      url: this.href,
-      data: '',                       
-    })
-    .done(function(server_data, textStatus, jqXHR) {
-      console.log("success" + server_data);
+        $(".question_printer_3000").html(server_data);
+        reset_question_listeners();
+      })
 
-      $(".question_printer_3000").html(server_data);
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("ERROR -- " + errorThrown);
 
-    })
+      })
+    });
+  };     
 
-    .fail(function(jqXHR, textStatus, errorThrown) {
-      console.log("ERROR -- " + errorThrown);
-
-    })
-  });
-
+  reset_question_listeners();
 });
-
