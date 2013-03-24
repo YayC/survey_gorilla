@@ -4,11 +4,13 @@
   <h2><%= @survey.title %></h2>
   <h3><%= @survey.description %></h3>
 
-  <% unless @survey.pictures.empty? %>
-    <img src="<%= @survey.pictures.first.image.gallery %>">
-  <% end %>
+<div id="image_upload">
+  <%= erb :_survey_image %>
+</div>
 
   <div class="question_printer_3000"><%= erb :_create_survey_question %></div>
-
-  <%=erb :_question_form %>
+  <% if @survey.pictures.empty? %>
+    <%= erb :_add_pic_form %>
+  <% end %>
+  <%= erb :_question_form %>
 <% end %>

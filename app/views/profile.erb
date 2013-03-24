@@ -9,22 +9,5 @@
   </form>
 
 <% unless @user.created_surveys.to_a.empty? %>
-  <h2><%= @user.name.capitalize %>'s Surveys:</h2>
-  <ol class="survey_list">
-  <% @user.created_surveys.each do |s| %>
-    <li>
-      <ul class="survey_list">
-        <li><a href="/survey/<%= s.id %>"><%= s.title %></a></li>
-            <% unless s.pictures.empty? %>
-              <li><img src="<%= s.pictures.first.image.mini_thumb %>"></li>
-            <% end %>
-        <li><form><label for="title" >Permalink: </label><input type="text" size="25" name="title" value="http://localhost:9292/survey/<%= s.id %>"></form></li>
-        <li><a href="/survey/edit/<%= s.id %>">Edit</a></li>
-        <li><a href="/survey/delete/<%= s.id %>">Delete</a></li>
-      </ul>
-    </li>
-  <% end %>
-  </ol>
+  <div id="my_surveys"><%= erb :_my_surveys %></div>
 <% end %>
-
-
