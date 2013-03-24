@@ -3,13 +3,13 @@
   <textarea type="text" name="choices" placeholder="Add question choices here, one per line."></textarea>
   <input type="submit" value="Add Question!">
 </form>
-  <form action="/profile" method="get">
-  <input type="submit" value="Save Survey">
-  </form>
 
-    <h2>Add a Pic:</h2>
+<form action="/profile" method="get">
+  <input type="submit" value="Save Survey">
+</form>
+
+<h2>Add a Pic:</h2>
 <form class="form" form method="post" action="/survey/upload" enctype="multipart/form-data">
   <input type="file" name="file">
   <input type="submit" value="Upload" class="btn">
 </form>
-</div>
