@@ -14,12 +14,10 @@
   <title>Gorilla Monkey</title>
 </head>
 <body>
-  <%= erb :_nav%>
+  <%= erb :_nav %>
   <div class="container">
-    <div class="content">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
-
+  <%= erb :_footer %>
 </body>
 </html>
