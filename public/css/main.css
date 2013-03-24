@@ -36,8 +36,14 @@ header h1 {
 
 header a {
   color: #29AB87;
-  text-shadow: 0px -1px 1px rgba(0,0,0,.5);
+  text-shadow: 0 -1px 1px rgba(0,0,0,.5);
   text-decoration: none;
+}
+
+header ul a:hover {
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  position:relative;
+  top:-2px;
 }
 
 nav {
@@ -46,6 +52,10 @@ nav {
   text-align: right;
   color: #FFF6E5;
   height: 128px;
+}
+
+nav a {
+  -webkit-transition: all .1s ease; 
 }
 
 nav a:hover {
@@ -71,17 +81,33 @@ header ul {
   font-size: 4em;
 }
 
+/* Forms */
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  border: 1px solid #ccc;
+  resize: none;
+  height: 64px;
+  border-radius: 4px;
+}
+
 /* Button */
 
 .button {
   margin: 32px;
+  height: 64px;
   font-weight: bold;
   background-color: #FFE540;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 8px;
   text-shadow: 0px 1px 1px rgba(255,255,255,.5);
   font-family: 'Wellfleet', cursive;
+  -webkit-transition: all .1s ease; 
 }
 
 .button:hover {
@@ -96,10 +122,22 @@ header ul {
   padding: 0;
   list-style: none;
   padding-left: 16px;
+  margin-bottom: 40px;
 }
 
 .survey_list li {
   margin-bottom: 16px;
+}
+
+.survey_list .survey_title {
+  font-size: 24px;
+  font-family: 'Wellfleet', cursive;
+}
+
+.survey_list .survey_edit,
+.survey_list .survey_delete {
+  display: inline;
+  margin-right: 8px;
 }
 
 .survey_list h2, .survey_list p {
@@ -125,11 +163,12 @@ header ul {
 }
 
 #create_survey input, #create_survey textarea {
-  width: 460px;
-  padding: 8px;
+  width: 450px;
+  padding: 16px;
   margin: 8px;
 }
 
+<<<<<<< HEAD
 #create_survey[input=submit] {
   width: 500px;
 }
@@ -155,7 +194,6 @@ header ul {
 .question[input=submit] {
   width: 500px;
 }
-
 
 /* Formatted Question List for survey/:survey_id */
 
@@ -212,13 +250,70 @@ div #errors {
   background-color: yellow;
 }
 
+.errors {
+  color:red;
+}
+
+span#email-errors {
+  position:absolute;
+  bottom:25px;
+  right:256px;
+
+}
+
+span#name-errors {
+  position:absolute;
+  bottom:25px;
+  right:463px;
+}
+
+span#password-errors {
+  position:absolute;
+  top:45px;
+  right:463px;
+}
+
+.hidden {
+  display:none;
+}
+
+.input-small {
+  float:left;
+}
+
+form {
+  position:relative;
+}
+
+input:focus:invalid {
+  background-image: url(/images/warn.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+input:required:valid {
+  background-image: url(/images/check.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
 /* Footer */
 
 footer {
   height: 24px;
   width: 100%;
-  color: rgba(0,0,0,.25);
   text-align: center;
+  font-family: 'Wellfleet', cursive;
+}
+
+footer,
+footer a {
+  color: rgba(0,0,0,.25);
+  text-decoration: none;
+  -webkit-transition: all .1s ease;
+}
+
+footer a:hover {
+  color: brown;
 }
 
 /* Overlay */
@@ -249,11 +344,6 @@ padding:20px;
 border:1px solid #ccc;
 z-index:101;
 }
-
-
-/*#boxclose {
-  z-index:102;
-}*/
 
 
 .box h1{

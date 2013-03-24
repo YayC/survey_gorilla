@@ -4,7 +4,7 @@
   <% @user.created_surveys.each do |s| %>
     <li>
       <ul class="survey_list">
-        <li><a href="/survey/<%= s.id %>"><%= s.title %></a></li>
+        <li class="survey_title"><a href="/survey/<%= s.id %>"><%= s.title %></a></li>
             <% unless s.pictures.empty? %>
               <li><img src="<%= s.pictures.first.image.mini_thumb %>"></li>
             <% end %>
