@@ -32,8 +32,9 @@ end
 get '/survey/delete/:id' do
   if current_user.id == Survey.find(params[:id]).creator_id
     Survey.delete(params[:id])
-  end    
-  redirect '/profile'
+  end
+  @user = current_user
+  erb :_my_surveys, :layout => false
 end
 
 # survey taker routes
