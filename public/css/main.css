@@ -40,7 +40,7 @@ header a {
   text-decoration: none;
 }
 
-header a:hover {
+header ul a:hover {
   text-shadow: 0 1px 1px rgba(0,0,0,.5);
   position:relative;
   top:-2px;
