@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
                              :foreign_key => "creator_id"
   has_many :choices, :through => :answers
   
-  validates :email, :presence => true
-  validates :email, :uniqueness => true
+  validates :email, :presence => true, :uniqueness => true
   validates :email, :format => { :with => /^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/ }
+  validates :name, :presence => true, :format => {:with => /J|j|\w\w+/ }
 
   include BCrypt
 

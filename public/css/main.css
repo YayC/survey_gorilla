@@ -168,6 +168,33 @@ textarea {
   margin: 8px;
 }
 
+<<<<<<< HEAD
+#create_survey[input=submit] {
+  width: 500px;
+}
+
+/*formatting for question form overlay*/
+
+
+.question {
+  width: 500px;
+  padding: 16px;
+  text-align: center;
+  border: 2px solid rgba(255,229,64,1);
+  border-radius: 8px;
+  background-color: rgba(255,229,64,.25);
+}
+
+.question input, .question textarea {
+  width: 460px;
+  padding: 8px;
+  margin: 8px;
+}
+
+.question[input=submit] {
+  width: 500px;
+}
+
 /* Formatted Question List for survey/:survey_id */
 
 .question_list li {
@@ -223,6 +250,52 @@ div #errors {
   background-color: yellow;
 }
 
+.errors {
+  color:red;
+}
+
+span#email-errors {
+  position:absolute;
+  bottom:25px;
+  right:256px;
+
+}
+
+span#name-errors {
+  position:absolute;
+  bottom:25px;
+  right:463px;
+}
+
+span#password-errors {
+  position:absolute;
+  top:45px;
+  right:463px;
+}
+
+.hidden {
+  display:none;
+}
+
+.input-small {
+  float:left;
+}
+
+form {
+  position:relative;
+}
+
+input:focus:invalid {
+  background-image: url(/images/warn.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+input:required:valid {
+  background-image: url(/images/check.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
 /* Footer */
 
 footer {
@@ -242,3 +315,42 @@ footer a {
 footer a:hover {
   color: brown;
 }
+
+/* Overlay */
+
+
+.overlay{
+    background:transparent url(/images/overlay.png) repeat top left;
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:100;
+}
+
+.box{
+position: fixed;
+top:-600px;
+left: 0%;
+margin-left: auto;
+margin-right: auto;
+width: 600px; (width of the modal)
+left: 0;
+right: 0;
+background-color:#fff;
+color:#7F7F7F;
+padding:20px;
+border:1px solid #ccc;
+z-index:101;
+}
+
+
+.box h1{
+    border-bottom: 1px dashed #7F7F7F;
+    margin:-20px -20px 0px -20px;
+    padding:10px;
+    background-color:#ffe540;
+    color:#29AB87;
+}
+

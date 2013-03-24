@@ -1,15 +1,35 @@
 <h1>Edit Your Survey, <%= current_user.name %></h1>
 
-<% if @survey %>
   <h2><%= @survey.title %></h2>
   <h3><%= @survey.description %></h3>
 
-<div id="image_upload">
-  <%= erb :_survey_image %>
-</div>
-<% if @survey.pictures.empty? %>
-  <%= erb :_add_pic_form %>
-<% end %>
+  <div id="image_upload"><%= erb :_survey_image %></div>
+
+  <% if @survey.pictures.empty? %>
+  	<%= erb :_add_pic_form %>
+  <% end %>
+
   <div class="question_printer_3000"><%= erb :_create_survey_question %></div>
-  <%= erb :_question_form %>
-<% end %>
+
+  <a class="activator" id="activator"><input type="submit" value="Add a question" class="button"></a>
+
+
+  <div class="overlay" id="overlay" style="display:none;"></div> 
+
+  <div class="box" id="box">
+    <h1>Add a question</h1>
+    <%= erb :_question_form %>
+<!-- <form class ="question" action="/question/new" method="post" >
+  <input type="text" name="content" placeholder="question title">
+  <textarea type="text" textarea rows="6" name="choices" placeholder="Add question choices here, one per line."></textarea>
+  <input type="submit" value="Add Question!" class='button'>
+  <input type="submit" value="Add Question and Close!" class="button">
+  <input type="button" value="Cancel" class="button" id="boxclose">
+</form>
+    <a class="boxclose" id="boxclose"></a> -->
+
+ </div>
+
+ <form action="/profile" method="get" id="create_survey">
+	<input type="submit" value="Save Survey" class="button">
+ </form>

@@ -1,10 +1,6 @@
-<ul>
-<li><form class ="question" action="/question/new" method="post">
+<form class ="question" action="/question/new" method="post" >
   <input type="text" name="content" placeholder="question title">
-  <textarea type="text" name="choices" placeholder="Add question choices here, one per line."></textarea>
-  <input type="submit" value="Add Question!">
-</form></li>
-<li><form action="/profile" method="get">
-  <input type="submit" value="Save Survey">
-</form></li>
-</ul>
+  <textarea type="text" textarea rows="6" name="choices" placeholder="Add question choices here, one per line."></textarea>
+  <input type="submit" value="Add Question!" class="button">
+  <a href="#" id="bloxclose"><input type="button" value="Close" class="button" id="boxclose"></a>
+</form>
