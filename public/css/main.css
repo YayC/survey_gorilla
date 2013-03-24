@@ -16,6 +16,10 @@ header {
   background: -webkit-linear-gradient(bottom, #e8cf48, #ffe540);
 }
 
+header .container {
+  min-width: 900px
+}
+
 header, h1, h2, h3 {
   font-family: 'Wellfleet', cursive;
 }
