@@ -56,13 +56,20 @@ post '/survey/:survey_id' do
   end
 
   # @params = params #to debug params
-  CompletedSurvey.create( :user_id => current_user.id, 
-                          :survey_id => params[:survey_id] )
   params[:questions].each_value do |choice_id|
     Answer.create( :choice_id => choice_id, :user_id => current_user.id  )
   end
 
-  redirect "/survey/#{params[:survey_id]}/results"
+  cs = CompletedSurvey.new( :user_id => current_user.id, 
+                          :survey_id => params[:survey_id] )
+
+  if cs.valid?
+    cs.save
+    redirect "/survey/#{params[:survey_id]}/results"
+  else
+    #TODO: prevent submission unless all questions completed
+    redirect "/survey/#{params[:survey_id]}"
+  end
 end
 
 get '/survey/:survey_id/results' do
