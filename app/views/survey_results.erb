@@ -2,28 +2,41 @@
 <h3>Completed by <%= @survey.num_respondents %>
  respondents</h3>
 <!-- <%= params %> (used for debugging)-->
-<ol>
+
+<div id="visualization">Loading bar charts...</div>
+
+<div class="left-column">
+  <ol>
 
 
-<% @question_strings.length.times do |i| %>
-  <li><%= @question_strings[i] %> (<%= @q_response_rates[i] %> respondents, <%= 
-  (@q_response_rates[i].to_f / @overall_respondents * 100).round(0) %>% of all survey respondents)</li>
-  <dl>
-    <% @choice_strings[i].length.times do |j| %>
-      <dt><%= @choice_strings[i][j] %></dt>
-      <dd>
-        <%= (@c_response_rates[i][j].to_f / @q_response_rates[i] * 100).round(0) %>% (total respondents:<%=  @c_response_rates[i][j]  %>) <br>
-      </dd>
-    <% end %>
-  </dl>
-  <br>
-  <div class="visualization" id="visualization<%= i %>">Loading bar chart...</div>
-  <br>
-<% end %>
+  <% @question_strings.length.times do |i| %>
+  <div class="result">
+    <li><%= @question_strings[i] %> (<%= @q_response_rates[i] %> respondents, <%= 
+    (@q_response_rates[i].to_f / @overall_respondents * 100).round(0) %>% of all survey respondents)</li>
+    <dl>
+      <% @choice_strings[i].length.times do |j| %>
+        <dt><%= @choice_strings[i][j] %></dt>
+        <dd>
+          <%= (@c_response_rates[i][j].to_f / @q_response_rates[i] * 100).round(0) %>% (total respondents:<%=  @c_response_rates[i][j]  %>) <br>
+        </dd>
+      <% end %>
+    </dl>
+  </div>
+  <% end %>
 
-</ol>
 
-<div id="visualization"></div>
+  </ol>
+</div>
+
+<div class="right-column">
+  <% @question_strings.length.times do |i| %>
+  <div class="vis-container">
+    <div class="visualization" id="visualization<%= i %>">Loading bar chart...</div>
+  </div>
+  <% end %>
+</div>
+
+
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
@@ -58,7 +71,7 @@
         new google.visualization.BarChart(document.getElementById('visualization<%= i %>')).
             draw(data,
                  {title:"Responses to '<%= @question_strings[i] %>'",
-                  width:600, height:400,
+                  width:300, height:200,
                   vAxis: {title: "Question #"},
                   hAxis: {title: "Respondents"}}
             );

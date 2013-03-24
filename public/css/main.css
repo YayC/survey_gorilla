@@ -56,10 +56,7 @@ header ul {
   font-size: 4em;
 }
 
-div #visualization {
-  width: 600px; 
-  height: 400px;
-}
+
 
 /* Button */
 
@@ -126,3 +123,37 @@ div #visualization {
 #create_survey {
   widht: 100%;
 }
+
+div #visualization {
+  width:600px;
+  height:400px;
+  margin-left: 10%
+}
+
+div .visualization {
+  text-align: right;
+  float:right;
+
+}
+
+div .result {
+  height: 250px;
+}
+
+div .vis-container {
+  height: 250px;
+}
+
+div .left-column {
+  float:left;
+  width:49%;
+  position:relative;
+}
+
+div .right-column {
+  float:left;
+  width:49%;
+  position:relative;
+}
+
+
