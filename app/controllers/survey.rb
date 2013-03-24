@@ -13,13 +13,11 @@ end
 post '/survey/new' do
   @survey = Survey.create(params.merge(:creator_id => current_user.id))
   set_created_survey(@survey)
-  @page_status = 'Create'
   redirect "/survey/edit/#{@survey.id}"
 end
 
 get '/survey/edit/:id' do
   @survey = Survey.find(params[:id])
-  @page_status = 'Edit'
   erb :create_survey
 end
 
