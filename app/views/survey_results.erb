@@ -11,6 +11,7 @@
 
   <% @question_strings.length.times do |i| %>
   <div class="result">
+    <% puts @q_response_rates[i] / @overall_respondents %>
     <li><%= @question_strings[i] %> (<%= @q_response_rates[i] %> respondents, <%= 
     (@q_response_rates[i].to_f / @overall_respondents * 100).round(0) %>% of all survey respondents)</li>
     <dl>
