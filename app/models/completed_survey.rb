@@ -12,7 +12,7 @@ class CompletedSurvey < ActiveRecord::Base
     user_question_ids.uniq.sort
 
     unless (survey_question_ids - user_question_ids).empty?
-      errors.add(:survey_completeness, "can't be incomplete")
+      errors.add(:survey_incomplete, "-- please answer all required questions")
     end
   end
  

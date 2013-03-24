@@ -51,13 +51,17 @@ get '/survey/:survey_id' do
 end
 
 post '/survey/:survey_id' do
+  content_type :json
+
   if current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
-    redirect "/"
+    return status 400 #invalid submission
   end
 
   # @params = params #to debug params
-  params[:questions].each_value do |choice_id|
-    Answer.create( :choice_id => choice_id, :user_id => current_user.id  )
+  if params[:questions] #make sure this isn't nil
+    params[:questions].each_value do |choice_id|
+      Answer.create( :choice_id => choice_id, :user_id => current_user.id  )
+    end
   end
 
   cs = CompletedSurvey.new( :user_id => current_user.id, 
@@ -65,10 +69,11 @@ post '/survey/:survey_id' do
 
   if cs.valid?
     cs.save
-    redirect "/survey/#{params[:survey_id]}/results"
+    status 200
+    {:redirect => "/survey/#{params[:survey_id]}/results"}.to_json
   else
-    #TODO: prevent submission unless all questions completed
-    redirect "/survey/#{params[:survey_id]}"
+    status 400 #invalid submission
+    {:errors => cs.errors.full_messages}.to_json
   end
 end
 
