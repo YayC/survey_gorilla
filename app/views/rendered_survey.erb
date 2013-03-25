@@ -5,7 +5,7 @@
 <% end %>
 
 <form method='post' action="/survey/<%= @survey.id %>">
-  <%= erb :_create_survey_question %>
+  <%= erb :_display_survey_questions %>
   <div id="errors"></div>
   <input type="submit" value="Submit">
 </form>
