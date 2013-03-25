@@ -261,6 +261,19 @@ span#email-errors {
 
 }
 
+span#login-errors {
+  position:absolute;
+  bottom:25px;
+
+}
+
+span#login-email-errors {
+  position:absolute;
+  bottom:25px;
+  right:460px;
+
+}
+
 span#name-errors {
   position:absolute;
   bottom:25px;

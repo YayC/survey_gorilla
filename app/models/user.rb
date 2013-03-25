@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include BCrypt
   has_many :completed_surveys
   has_many :surveys, :through => :completed_surveys
   has_many :answers
@@ -12,8 +13,9 @@ class User < ActiveRecord::Base
   validates :email, :format => { :with => /^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/ }
   validates :name, :presence => true, :format => {:with => /J|j|\w\w+/ }
 
-  include BCrypt
+  before_create :downcase_email
 
+  
   def answered_questions
     self.choices.map{|c| c.question}
   end
@@ -27,5 +29,9 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  private
+  def downcase_email
+    self.email.downcase!
+  end
 
 end

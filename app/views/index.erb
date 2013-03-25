@@ -9,9 +9,11 @@
   <p><%= @errors %></p>
 <% end %>
 
-<form action="/sessions/new" method="post" class="login-box">
+<form id="login" action="/sessions/new" method="post" class="login-box">
+  <span class="hidden errors" id="login-email-errors"></span>
   <input type="text" name="email" class="input-small" value="<%= @user.email %>" placeholder="Email">
   <input type="password" name="password" class="input-small" placeholder="Password">
+  <span class="hidden errors" id="login-errors"></span>
   <input type="submit" value="Login" class="btn">
 </form>
 
@@ -33,3 +35,4 @@
 </form>
 
 <script src="/js/signup_validations.js"></script>
+<script src="/js/login_validations.js"></script>

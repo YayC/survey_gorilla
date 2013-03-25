@@ -12,13 +12,13 @@ $(document).ready(function(){
   $signup_form.find('input[name="signup[email]"]').focus(function(){
     $(this).on('keyup', (function(e){
       var $this = $(this);
-      if (!$this.val().match(/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/)){
+      if (!$this.val().match(/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/) && $this.val() !== ""){
 
         // wait a bit before showing the error
         setTimeout(function(){
 
           // check to make sure the error is still there
-          if (!$this.val().match(/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/)){
+          if (!$this.val().match(/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/) && $this.val() !== ""){
 
             // show the error
             $signup_form.find('#email-errors').text("need a real email foo").removeClass('hidden');
@@ -35,9 +35,9 @@ $(document).ready(function(){
   $signup_form.find('input[name="signup[password]"]').focus(function(){
     $(this).on('keyup', (function(e){
       var $this = $(this);
-      if (!($this.val().match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d]).{6,}$/))){
+      if (!$this.val().match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d]).{6,}$/) && $this.val() !== ""){
         setTimeout(function(){
-          if (!($this.val().match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d]).{6,}$/))){
+          if (!$this.val().match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d]).{6,}$/) && $this.val() !== ""){
             $signup_form.find('#password-errors').text("(6 or more characters with at least one uppercase letter, one lowercase letter, one number)").removeClass('hidden');
           }
         }, wait_time);
@@ -52,9 +52,9 @@ $(document).ready(function(){
   $signup_form.find('input[name="signup[name]"]').focus(function(){
     $(this).on('keyup', (function(e){
       var $this = $(this);
-      if (!($this.val().match(/J|j|\w\w+/))){
+      if (!$this.val().match(/J|j|\w\w+/) && $this.val() !== ""){
         setTimeout(function(){
-          if (!($this.val().match(/J|j|\w\w+/))){
+          if (!$this.val().match(/J|j|\w\w+/) && $this.val() !== ""){
             $signup_form.find('#name-errors').text("One or more letters").removeClass('hidden');
           }
         }, wait_time);
@@ -65,11 +65,10 @@ $(document).ready(function(){
     }));
   });
 
-  // remove the keyup listener when the user 'unfocuses' the input, and 
-  // hide the relevant errors for that field
+  // remove the keyup listener when the user 'unfocuses' the input
   $signup_form.find('input').blur(function(){
     $(this).unbind('keyup');
-    $(this).prev('.errors').addClass('hidden');
+    
   });
 
   // show any previous errors for the input when the user focuses on it

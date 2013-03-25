@@ -14,16 +14,18 @@ post '/users/new' do
 end
 
 post '/sessions/new' do
+  # content_type :text
   @user = User.find_by_email(params[:email])
   if @user.nil?
-    @errors = "YOU ARE NOT IN THE DATABASE AT ALL."
-    erb :index
+    status 400 #invalid submission
+    "EMAIL NOT IN THE DATABASE."
   elsif @user.password == params[:password]
+    status 200
     login(@user)
-    redirect '/profile'
+    '/profile'
   else
-    @errors = "HOW ABOUT A REAL PASSWORD"
-    erb :index
+    status 400 #invalid submission
+    "HOW ABOUT A REAL PASSWORD?"
   end
 end
 
