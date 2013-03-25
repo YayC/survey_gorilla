@@ -10,10 +10,14 @@
 <% end %>
 
 <form id="login" action="/sessions/new" method="post" class="login-box">
-  <span class="hidden errors" id="login-email-errors"></span>
-  <input type="text" name="email" class="input-small" value="<%= @user.email %>" placeholder="Email">
-  <input type="password" name="password" class="input-small" placeholder="Password">
-  <span class="hidden errors" id="login-errors"></span>
+  <div class="input-group">
+    <span class="hidden errors" id="login-email-errors"></span>
+    <input type="text" name="email" class="input-small" value="<%= @user.email %>" placeholder="Email">
+  </div>
+  <div class="input-group">
+    <input type="password" name="password" class="input-small" placeholder="Password">
+    <span class="hidden errors" id="login-errors"></span>
+  </div>
   <input type="submit" value="Login" class="btn">
 </form>
 
@@ -25,12 +29,18 @@
 
 
 <form id="signup" action="/users/new" method="post" class="login-box">
-  <span class="hidden errors" id="name-errors"></span>
-  <input type="text" name="signup[name]" class="input-small" required pattern="J|j|\w\w+" value="<%= @user.name %>" placeholder="Name">
-  <span class="hidden errors" id="email-errors"></span>
-  <input type="text" name="signup[email]" class="input-small" required pattern="([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})" value="<%= @user.email %>" placeholder="Email">
-  <span class="hidden errors" id="password-errors"></span>
-  <input type="password" name="signup[password]" class="input-small" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+  <div class="input-group">
+    <span class="hidden errors" id="name-errors"></span>
+    <input type="text" name="signup[name]" class="input-small" required pattern="J|j|\w\w+" value="<%= @user.name %>" placeholder="Name">
+  </div>
+  <div class="input-group">
+    <span class="hidden errors" id="email-errors"></span>
+    <input type="text" name="signup[email]" class="input-small" required pattern="([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})" value="<%= @user.email %>" placeholder="Email">
+  </div>
+  <div class="input-group">
+    <span class="hidden errors" id="password-errors"></span>
+    <input type="password" name="signup[password]" class="input-small" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+  </div>
   <input type="submit" value="Sign Up" class="btn">
 </form>
 

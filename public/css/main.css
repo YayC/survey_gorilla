@@ -168,7 +168,6 @@ textarea {
   margin: 8px;
 }
 
-<<<<<<< HEAD
 #create_survey[input=submit] {
   width: 500px;
 }
@@ -254,36 +253,32 @@ div #errors {
   color:red;
 }
 
-span#email-errors {
-  position:absolute;
-  bottom:25px;
-  right:256px;
-
-}
 
 span#login-errors {
   position:absolute;
-  bottom:25px;
+  top:100%;
 
 }
 
 span#login-email-errors {
   position:absolute;
-  bottom:25px;
-  right:460px;
+  bottom:100%;
 
 }
 
+span#email-errors {
+  position:absolute;
+  bottom:100%;
+
+}
 span#name-errors {
   position:absolute;
-  bottom:25px;
-  right:463px;
+  bottom:100%;
 }
 
 span#password-errors {
   position:absolute;
-  top:45px;
-  right:463px;
+  top:100%;
 }
 
 .hidden {
@@ -294,8 +289,10 @@ span#password-errors {
   float:left;
 }
 
-form {
+
+.input-group {
   position:relative;
+  float:left;
 }
 
 input:focus:invalid {
