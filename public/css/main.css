@@ -328,15 +328,14 @@ footer a:hover {
 
 /* Overlay */
 
-
 .overlay{
-    background:transparent url(/images/overlay.png) repeat top left;
-    position:fixed;
-    top:0px;
-    bottom:0px;
-    left:0px;
-    right:0px;
-    z-index:100;
+  background:transparent url(/images/overlay.png) repeat top left;
+  position:fixed;
+  top:0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  z-index:100;
 }
 
 .box{
@@ -345,7 +344,7 @@ top:-600px;
 left: 0%;
 margin-left: auto;
 margin-right: auto;
-width: 600px; (width of the modal)
+width: 600px; /* (width of the modal) */
 left: 0;
 right: 0;
 background-color:#fff;
@@ -355,12 +354,11 @@ border:1px solid #ccc;
 z-index:101;
 }
 
-
 .box h1{
-    border-bottom: 1px dashed #7F7F7F;
-    margin:-20px -20px 0px -20px;
-    padding:10px;
-    background-color:#ffe540;
-    color:#29AB87;
+  border-bottom: 1px dashed #7F7F7F;
+  margin:-20px -20px 0px -20px;
+  padding:10px;
+  background-color:#ffe540;
+  color:#29AB87;
 }
 
