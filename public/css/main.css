@@ -168,10 +168,10 @@ textarea {
   margin: 8px;
 }
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 #create_survey[input=submit] {
   width: 500px;
-}
+}*/
 
 /*formatting for question form overlay*/
 
@@ -258,6 +258,19 @@ span#email-errors {
   position:absolute;
   bottom:25px;
   right:256px;
+
+}
+
+span#login-errors {
+  position:absolute;
+  bottom:25px;
+
+}
+
+span#login-email-errors {
+  position:absolute;
+  bottom:25px;
+  right:460px;
 
 }
 
