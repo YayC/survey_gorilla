@@ -2,107 +2,109 @@
 <h3>Completed by <%= @overall_respondents %>
  respondents</h3>
 <!-- <%= params %> (used for debugging)-->
+<% if @overall_respondents != 0 %>
+  <div id="visualization">Loading bar charts...</div>
 
-<div id="visualization">Loading bar charts...</div>
-
-<div class="left-column">
-  <ol>
+  <div class="left-column">
+    <ol>
 
 
-  <% @question_strings.length.times do |i| %>
-  <div class="result">
-    <% puts @q_response_rates[i] / @overall_respondents %>
-    <li><%= @question_strings[i] %> (<%= @q_response_rates[i] %> respondents, <%= 
-    (@q_response_rates[i].to_f / @overall_respondents * 100).round(0) %>% of all survey respondents)</li>
-    <dl>
-      <% @choice_strings[i].length.times do |j| %>
-        <dt><%= @choice_strings[i][j] %></dt>
-        <dd>
-          <%= (@c_response_rates[i][j].to_f / @q_response_rates[i] * 100).round(0) %>% (total respondents:<%=  @c_response_rates[i][j]  %>) <br>
-        </dd>
-      <% end %>
-    </dl>
+    <% @question_strings.length.times do |i| %>
+    <div class="result">
+      <% @q_response_rates[i] / @overall_respondents  %>
+      <li><%= @question_strings[i] %> (<%= @q_response_rates[i] %> respondents, <%= 
+      (@q_response_rates[i].to_f / @overall_respondents * 100).round(0) %>% of all survey respondents)</li>
+      <dl>
+        <% @choice_strings[i].length.times do |j| %>
+          <dt><%= @choice_strings[i][j] %></dt>
+          <dd>
+            <%= (@c_response_rates[i][j].to_f / @q_response_rates[i] * 100).round(0) %>% (total respondents:<%=  @c_response_rates[i][j]  %>) <br>
+          </dd>
+        <% end %>
+      </dl>
+    </div>
+    <% end %>
+
+
+    </ol>
   </div>
-  <% end %>
 
-
-  </ol>
-</div>
-
-<div class="right-column">
-  <% @question_strings.length.times do |i| %>
-  <div class="vis-container">
-    <div class="visualization" id="visualization<%= i %>">Loading bar chart...</div>
+  <div class="right-column">
+    <% @question_strings.length.times do |i| %>
+    <div class="vis-container">
+      <div class="visualization" id="visualization<%= i %>">Loading bar chart...</div>
+    </div>
+    <% end %>
   </div>
+
+
+
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('visualization', '1', {packages: ['corechart']});
+  </script>
+
+  <% combined_stats_array = [] %>
+  <% combined_stats_array[0] =["Question #"] %>
+
+  <% @survey.questions.length.times do |i| %>
+    <% stats_array = [] %>
+    <% stats_array[0] = ["Question #"]; stats_array[1] = [(i + 1).to_s] %>
+    <% combined_stats_array[i+1] = [(i + 1).to_s] %>
+    
+    <%  @choice_strings[i].each_with_index do |c, i| %>
+      <% stats_array[0] << c %>
+      <% combined_stats_array[0][i+1] = "Choice \##{i+1}"%>
+    <% end %>
+
+    <%  @c_response_rates[i].each do |rate| %>
+      <% stats_array[1] << rate %>
+      <% combined_stats_array[i+1] << rate %>
+
+    <% end %>
+
+   <script type="text/javascript">
+        function drawVisualization() {
+          // Create and populate the data table.
+          console.log(<%= combined_stats_array %>)
+          var data = google.visualization.arrayToDataTable(<%= stats_array %>);
+        
+          // Create and draw the visualization 
+          new google.visualization.BarChart(document.getElementById('visualization<%= i %>')).
+              draw(data,
+                   {title:"\"<%= @question_strings[i] %>\"",
+                    width:300, height:200,
+                    legend: "none",
+                    bar: {groupWidth: '90%'},
+                    vAxis: {viewWindowMode: 'maximized', textPosition:'none'},
+                    hAxis: {title: "Respondents"}}
+              );
+        }
+        
+
+        google.setOnLoadCallback(drawVisualization);
+      </script>
   <% end %>
-</div>
+  <script type="text/javascript">
+        function drawVisualization() {
+          // Create and populate the data table.
+          console.log(<%= combined_stats_array %>)
+          var data = google.visualization.arrayToDataTable(<%= combined_stats_array %>);
+        
+          // Create and draw the visualization 
+          new google.visualization.BarChart(document.getElementById('visualization')).
+              draw(data,
+                   {title:"Survey Responses by Question",
+                    width:600, height:400,
+                    bar: {groupWidth: '80%'},
+                    vAxis: {title: "Question #"},
+                    hAxis: {title: "Respondents"}}
+              );
+        }
+        
 
+        google.setOnLoadCallback(drawVisualization);
+      </script>
 
-
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-  google.load('visualization', '1', {packages: ['corechart']});
-</script>
-
-<% combined_stats_array = [] %>
-<% combined_stats_array[0] =["Question #"] %>
-
-<% @survey.questions.length.times do |i| %>
-  <% stats_array = [] %>
-  <% stats_array[0] = ["Question #"]; stats_array[1] = [(i + 1).to_s] %>
-  <% combined_stats_array[i+1] = [(i + 1).to_s] %>
-  
-  <%  @choice_strings[i].each_with_index do |c, i| %>
-    <% stats_array[0] << c %>
-    <% combined_stats_array[0][i+1] = "Choice \##{i+1}"%>
-  <% end %>
-
-  <%  @c_response_rates[i].each do |rate| %>
-    <% stats_array[1] << rate %>
-    <% combined_stats_array[i+1] << rate %>
-
-  <% end %>
-
- <script type="text/javascript">
-      function drawVisualization() {
-        // Create and populate the data table.
-        console.log(<%= combined_stats_array %>)
-        var data = google.visualization.arrayToDataTable(<%= stats_array %>);
-      
-        // Create and draw the visualization 
-        new google.visualization.BarChart(document.getElementById('visualization<%= i %>')).
-            draw(data,
-                 {title:"\"<%= @question_strings[i] %>\"",
-                  width:300, height:200,
-                  legend: "none",
-                  bar: {groupWidth: '90%'},
-                  vAxis: {viewWindowMode: 'maximized', textPosition:'none'},
-                  hAxis: {title: "Respondents"}}
-            );
-      }
-      
-
-      google.setOnLoadCallback(drawVisualization);
-    </script>
 <% end %>
-<script type="text/javascript">
-      function drawVisualization() {
-        // Create and populate the data table.
-        console.log(<%= combined_stats_array %>)
-        var data = google.visualization.arrayToDataTable(<%= combined_stats_array %>);
-      
-        // Create and draw the visualization 
-        new google.visualization.BarChart(document.getElementById('visualization')).
-            draw(data,
-                 {title:"Survey Responses by Question",
-                  width:600, height:400,
-                  bar: {groupWidth: '80%'},
-                  vAxis: {title: "Question #"},
-                  hAxis: {title: "Respondents"}}
-            );
-      }
-      
-
-      google.setOnLoadCallback(drawVisualization);
-    </script>
 <!-- <script type="text/javascript" src="/js/data_vis.js"></script> -->
