@@ -16,9 +16,17 @@ post '/survey/new' do
 end
 
 get '/survey/edit/:id' do
-  @survey = Survey.find(params[:id])
-  erb :create_survey
+  if current_user.id == Survey.find(params[:id]).creator_id
+    @survey = Survey.find(params[:id])
+    set_created_survey(@survey)
+    erb :create_survey
+  else
+    redirect '/profile'
+  end
 end
+
+
+# question routes
 
 post '/question/new' do
   @question = current_created_survey.questions.create(:content => params[:content])
@@ -34,8 +42,6 @@ get '/question/delete/:id' do
     Question.delete(params[:id])
   end
   @survey = current_created_survey
-  p "$$$$$$$$$$$$$$$$$$$$$$$$$$"
-  p @survey
   erb :_create_survey_question, :layout => false
 end
 
@@ -49,14 +55,12 @@ end
 
 # survey taker routes
 
-
 get '/survey/:survey_id' do
   
   @survey = Survey.find(params[:survey_id])
   if current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
     redirect "/"
   end
-
   erb :rendered_survey
 end
 
@@ -111,13 +115,3 @@ get '/survey/:survey_id/results' do
   
   erb :survey_results
 end
-
-
-
-
-
-
-
-
-
-
