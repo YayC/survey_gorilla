@@ -4,6 +4,7 @@
   <% @survey.questions.each do |q| %>
     <li>
       <%= q.content %>
+      <%= erb :_add_pic_form, :locals => {:q_id => q.id }%>
       <a class="delete_question" href="/question/delete/<%= q.id %>"><input type="button" value="Delete" class="button"></a>
       <ul>
         <% q.choices.each_with_index do |c| %>

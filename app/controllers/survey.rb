@@ -2,11 +2,12 @@
 # survey creator routes
 
 post '/survey/upload' do
-  @survey = current_created_survey
-  picture = @survey.pictures.new  
+  survey = current_created_survey
+  question = Question.find(params[:q_id])
+  picture = question.pictures.new  
   picture.image.store!(params[:file])
   picture.save
-  redirect "/survey/edit/#{@survey.id}"
+  redirect "/survey/edit/#{survey.id}"
 end
 
 post '/survey/new' do
@@ -58,7 +59,11 @@ end
 get '/survey/:survey_id' do
   
   @survey = Survey.find(params[:survey_id])
-  if current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
+  if !current_user && @survey.creator.name != "J"
+    redirect "/"
+  end
+  
+  if current_user && current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
     redirect "/"
   end
   erb :rendered_survey

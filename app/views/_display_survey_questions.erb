@@ -3,6 +3,9 @@
   <ol class="question_list">
   <% @survey.questions.each do |q| %>
     <li>
+      <% unless q.pictures.length == 0  %>
+        <img src="<%= q.pictures.first.image.gallery  %>">
+      <% end %>
       <%= q.content %>
       <ul>
         <% q.choices.each_with_index do |c| %>
