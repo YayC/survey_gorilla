@@ -14,7 +14,7 @@ require 'pathname'
 require 'pg'
 require 'active_record'
 require 'logger'
-
+require 'faker'
 require 'sinatra'
 require "sinatra/reloader" if development?
 require 'carrierwave'
@@ -22,7 +22,7 @@ require 'carrierwave/orm/activerecord'
 require "mini_magick"
 require 'carrierwave/processing/mini_magick'
 require 'erb'
-require 'BCrypt'
+require 'bcrypt'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
