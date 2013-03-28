@@ -15,5 +15,5 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [75,50]
   end
 
-  storage :file 
+  storage :fog
 end

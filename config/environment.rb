@@ -23,7 +23,7 @@ require "mini_magick"
 require 'carrierwave/processing/mini_magick'
 require 'erb'
 require 'bcrypt'
-require 'aws/s3'
+require 'fog'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -53,9 +53,14 @@ if Sinatra::Application.development?
 end
 
 CarrierWave.configure do |config|
-  config.s3_access_key_id = ENV["S3_ACCESS_KEY_ID"]
-  config.s3_secret_access_key = ENV["S3_SECRET_ACCESS_KEY"]
-  config.s3_bucket = "GorillaMonkey"
+  config.storage = :fog
+  config.fog_directory = "GorillaMonkey"
+
+  config.fog_credentials = {
+    :provider => 'AWS',
+    :aws_access_key_id => ENV["S3_ACCESS_KEY_ID"],
+    :aws_secret_access_key => ENV["S3_SECRET_ACCESS_KEY"]
+  }
 end
 
 
