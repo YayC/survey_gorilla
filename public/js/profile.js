@@ -5,13 +5,13 @@ $(document).ready(function() {
     function reset_survey_listeners() {
     $('.delete').click(function(e) {
       e.preventDefault();
-    
+
       $.ajax({
-        type: 'get',                
+        type: 'get',
         url: this.href,
-        data: '',                       
+        data: ''
       })
-   
+
       .done(function(server_data, textStatus, jqXHR) {
         console.log('Success' + server_data);
 
@@ -22,9 +22,9 @@ $(document).ready(function() {
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR -- " + errorThrown);
 
-      })
+      });
     });
-  };
+  }
 
   reset_survey_listeners();
 });

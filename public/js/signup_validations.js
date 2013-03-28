@@ -7,7 +7,7 @@
 $(document).ready(function(){
   var $signup_form = $('form#signup');
   var wait_time = 2000;
-  
+
   // js email validation
   $signup_form.find('input[name="signup[email]"]').focus(function(){
     $(this).on('keyup', (function(e){
@@ -58,7 +58,7 @@ $(document).ready(function(){
             $signup_form.find('#name-errors').text("One or more letters").removeClass('hidden');
           }
         }, wait_time);
-      } 
+      }
       else {
         $signup_form.find('#name-errors').text("").addClass('hidden');
       }
@@ -68,7 +68,7 @@ $(document).ready(function(){
   // remove the keyup listener when the user 'unfocuses' the input
   $signup_form.find('input').blur(function(){
     $(this).unbind('keyup');
-    
+
   });
 
   // show any previous errors for the input when the user focuses on it

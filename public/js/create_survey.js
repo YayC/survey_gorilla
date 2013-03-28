@@ -10,9 +10,9 @@ $(document).ready(function() {
   $(this).closest('form').find("input[type=text], textarea").val("");
 
   $.ajax({
-    type: this.method,               
+    type: this.method,
     url: this.action,
-    data: data,                      
+    data: data
   })
 
   .done(function(server_data, textStatus, jqXHR) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
   .fail(function(jqXHR, textStatus, errorThrown) {
     console.log("ERROR -- " + errorThrown);
 
-  })
+  });
 });
 
   function reset_question_listeners() {
@@ -34,9 +34,9 @@ $(document).ready(function() {
       e.preventDefault();
 
        $.ajax({
-        type: 'get',                
+        type: 'get',
         url: this.href,
-        data: '',                       
+        data: ''
       })
       .done(function(server_data, textStatus, jqXHR) {
         console.log("success" + server_data);
@@ -48,9 +48,9 @@ $(document).ready(function() {
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR -- " + errorThrown);
 
-      })
+      });
     });
-  };     
+  }
 
 
   function reset_photo_listeners() {
@@ -60,7 +60,7 @@ $(document).ready(function() {
        $.ajax({
         type: 'delete',
         url: this.href,
-        data: '',
+        data: ''
       })
       .done(function(server_data, textStatus, jqXHR) {
         console.log("success" + server_data);
@@ -72,9 +72,9 @@ $(document).ready(function() {
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR -- " + errorThrown);
 
-      })
+      });
     });
-  };     
+  }
 
 
 
@@ -89,7 +89,6 @@ $(document).ready(function() {
               $('#overlay').fadeOut('fast');
           });
       });
-   
   });
 
 

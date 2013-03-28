@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('form').on('submit', function(e){
     e.preventDefault();
-    
+
     $.ajax({
       url: $(this).attr('action'),
       method: $(this).attr('method'),
@@ -12,10 +12,9 @@ $(document).ready(function(){
     })
     .fail(function(ajaxData){
       var errors = $.parseJSON(ajaxData.responseText).errors;
-      console.log('failed ajax request')
-      debugger
-      $('#errors').text(errors)
-    })
+      console.log('failed ajax request');
+      $('#errors').text(errors);
+    });
 
-  })
+  });
 });

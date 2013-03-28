@@ -9,7 +9,7 @@ function drawVisualization() {
           ['2007',  1968113,    393032,    979198,    1080887],
           ['2008',  1901067,    517206,    916965,    1056036]
         ]);
-      
+
         // Create and draw the visualization.
         new google.visualization.BarChart(document.getElementById('visualization')).
             draw(data,
@@ -19,7 +19,6 @@ function drawVisualization() {
                   hAxis: {title: "Cups"}}
             );
       }
-      
 
       google.setOnLoadCallback(drawVisualization);
 
