@@ -23,6 +23,7 @@ require "mini_magick"
 require 'carrierwave/processing/mini_magick'
 require 'erb'
 require 'bcrypt'
+require 'aws/s3'
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -37,10 +38,42 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 require APP_ROOT.join('config', 'database')
 
 # Set up config file for CarrierWave
-CarrierWave.configure do |config|
-  config.permissions = 0666
-  config.directory_permissions = 0777
-  config.storage = :file
-  config.root = "#{APP_ROOT}/public"
-  config.store_dir = "images"
+# CarrierWave.configure do |config|
+#   config.permissions = 0666
+#   config.directory_permissions = 0777
+#   config.storage = :file
+#   config.root = "#{APP_ROOT}/public"
+#   config.store_dir = "images"
+# end
+
+if Sinatra::Application.development?
+  s3_data = YAML.load_file(APP_ROOT.join('config', 's3.yml'))
+  ENV['S3_ACCESS_KEY_ID'] = s3_data['s3_access_key_id']
+  ENV["S3_SECRET_ACCESS_KEY"] = s3_data['s3_secret_access_key']
 end
+
+CarrierWave.configure do |config|
+  config.s3_access_key_id = ENV["S3_ACCESS_KEY_ID"]
+  config.s3_secret_access_key = ENV["S3_SECRET_ACCESS_KEY"]
+  config.s3_bucket = "GorillaMonkey"
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

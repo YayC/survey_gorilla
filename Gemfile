@@ -18,4 +18,6 @@ gem 'carrierwave'
 gem "mini_magick"
 gem 'bcrypt-ruby'
 
+gem 'aws/s3'
+
 gem 'faker'

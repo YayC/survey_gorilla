@@ -94,8 +94,8 @@ post '/survey/:survey_id' do
   unless current_user
     u = User.new( email: "anon#{rand(1..999999999)}@anon.com", name: 'Anon' )
     u.password= "Tester1"
-    session[:token] = u.id
     u.save!
+    session[:token] = u.id
   end
 
   # @params = params #to debug params
