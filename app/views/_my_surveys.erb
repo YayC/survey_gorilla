@@ -1,6 +1,6 @@
 <% unless @user.created_surveys.empty? %>
   <% if Sinatra::Application.production? %>
-    <% base_url = "http://infinite-dawn-7663.herokuapp.com" %>
+    <% base_url = "http://infinite-dawn-7663.herokuapp.com/survey" %>
   <% else %>
     <% base_url = "http://localhost:9292/survey" %>
   <% end %>
