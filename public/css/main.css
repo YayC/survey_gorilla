@@ -9,6 +9,10 @@ body{
   background-image: url('/assets/p6.png');
 }
 
+li {
+  position:relative;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
