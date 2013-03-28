@@ -1,3 +1,8 @@
-  <% unless @survey.pictures.empty? %>
-    <img src="<%= @survey.pictures.first.image.gallery %>">
+<div class="border">
+  <% unless survey.pictures.empty? %>
+    <% survey.pictures.each do |p| %>
+      <a class="fancybox" href="<%= p.image %>"><img src="<%= p.image.mini_thumb %>"></a>
+      
+    <% end %>
   <% end %>
+</div>

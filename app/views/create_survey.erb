@@ -1,11 +1,10 @@
 <h1>Edit Your Survey, <%= current_user.name %></h1>
 
+  <div id="image_upload"><%= erb :_survey_image, :layout => false, :locals => {:survey => @survey} %></div>
   <h2><%= @survey.title %></h2>
   <h3><%= @survey.description %></h3>
 
-  <div id="image_upload"><%= erb :_survey_image %></div>
-
-
+  <hr>
 
   <div class="question_printer_3000"><%= erb :_create_survey_question %></div>
 

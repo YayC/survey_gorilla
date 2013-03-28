@@ -3,8 +3,8 @@
   <ol class="question_list">
   <% @survey.questions.each do |q| %>
     <li>
-      <% unless q.pictures.length == 0  %>
-        <img src="<%= q.pictures.first.image.gallery  %>">
+      <% unless q.pictures.empty?  %>
+        <a class="fancybox" href="<%= q.pictures.first.image %>"><img src="<%= q.pictures.first.image.thumb  %>"></a><br>
       <% end %>
       <%= q.content %>
       <ul>

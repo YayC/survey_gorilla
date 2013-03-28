@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $(".fancybox").fancybox();
+
     function reset_survey_listeners() {
     $('.delete').click(function(e) {
       e.preventDefault();

@@ -1,28 +1,33 @@
 $(document).ready(function() {
 
-   $('.question').submit(function(e) {
-    e.preventDefault();
-    var data = $(this).serialize();
-    console.log(data);
-    $(this).closest('form').find("input[type=text], textarea").val("");
+  reset_question_listeners();
+  reset_photo_listeners();
 
-    $.ajax({
-      type: this.method,               
-      url: this.action,
-      data: data,                      
-    })
+  $('.question').submit(function(e) {
+  e.preventDefault();
+  var data = $(this).serialize();
+  console.log(data);
+  $(this).closest('form').find("input[type=text], textarea").val("");
 
-    .done(function(server_data, textStatus, jqXHR) {
-      console.log(server_data);
+  $.ajax({
+    type: this.method,               
+    url: this.action,
+    data: data,                      
+  })
 
-      $(".question_printer_3000").html(server_data);
-      reset_question_listeners();
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-      console.log("ERROR -- " + errorThrown);
+  .done(function(server_data, textStatus, jqXHR) {
+    console.log(server_data);
 
-    })
-  });
+    $(".question_printer_3000").html(server_data);
+
+    reset_question_listeners();
+    reset_photo_listeners();
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log("ERROR -- " + errorThrown);
+
+  })
+});
 
   function reset_question_listeners() {
     $('.delete_question').click(function(e) {
@@ -38,6 +43,30 @@ $(document).ready(function() {
 
         $(".question_printer_3000").html(server_data);
         reset_question_listeners();
+      })
+
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("ERROR -- " + errorThrown);
+
+      })
+    });
+  };     
+
+
+  function reset_photo_listeners() {
+    $('.delete_question_photo').click(function(e) {
+      e.preventDefault();
+
+       $.ajax({
+        type: 'delete',
+        url: this.href,
+        data: '',
+      })
+      .done(function(server_data, textStatus, jqXHR) {
+        console.log("success" + server_data);
+
+        $(".question_printer_3000").html(server_data);
+        reset_photo_listeners();
       })
 
       .fail(function(jqXHR, textStatus, errorThrown) {

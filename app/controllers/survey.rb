@@ -3,8 +3,7 @@
 
 post '/survey/upload' do
   survey = current_created_survey
-  question = Question.find(params[:q_id])
-  picture = question.pictures.new  
+  picture = Picture.new(question_id: params[:q_id]) 
   picture.image.store!(params[:file])
   picture.save
   redirect "/survey/edit/#{survey.id}"
@@ -46,6 +45,15 @@ get '/question/delete/:id' do
   erb :_create_survey_question, :layout => false
 end
 
+delete '/question/picture/:question_id' do
+  question = Question.find(params[:question_id])
+  if current_user.id == question.survey.creator_id
+    question.pictures.delete_all
+  end
+  @survey = current_created_survey
+  erb :_create_survey_question, :layout => false
+end
+
 get '/survey/delete/:id' do
   if current_user.id == Survey.find(params[:id]).creator_id
     Survey.delete(params[:id])
@@ -53,6 +61,12 @@ get '/survey/delete/:id' do
   @user = current_user
   erb :_my_surveys, :layout => false
 end
+
+
+
+
+
+
 
 # survey taker routes
 

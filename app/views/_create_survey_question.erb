@@ -3,15 +3,23 @@
   <ol class="question_list">
   <% @survey.questions.each do |q| %>
     <li>
+      <% unless q.pictures.empty?  %>
+        <a class="fancybox" href="<%= q.pictures.first.image %>"><img src="<%= q.pictures.first.image.thumb  %>"></a><br>
+        <a class="delete_question_photo" href="/question/picture/<%= q.id %>"><input type="button" value="Delete picture" class="button"></a>
+      <% end %>
       <%= q.content %>
-      <%= erb :_add_pic_form, :locals => {:q_id => q.id }%>
-      <a class="delete_question" href="/question/delete/<%= q.id %>"><input type="button" value="Delete" class="button"></a>
+      <% if  q.pictures.empty?%>
+        <%= erb :_add_pic_form, :locals => {:q_id => q.id }%>
+      <% end %>
+      
+      <a class="delete_question" href="/question/delete/<%= q.id %>"><input type="button" value="Delete question" class="button"></a>
       <ul>
         <% q.choices.each_with_index do |c| %>
           <li><input type="radio" name="questions[<%= q.id %>]" value="<%= c.id %>"><%= c.content %></li>
         <% end %>
       </ul>
     </li>
+    <br>
   <% end %>
   </ol>
 <% end %>

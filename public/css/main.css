@@ -362,3 +362,29 @@ z-index:101;
   color:#29AB87;
 }
 
+.border {
+  border:2px dashed #A52A2A;
+  max-width: 400px;
+  display:inline-block;
+  padding:5px 5px 3px 5px;
+}
+
+.delete_question_photo {
+  position:absolute;
+  left:150px;
+  top:5px;
+}
+
+.delete_question {
+/*  position:relative;
+  left:150px;*/
+}
+
+ul {
+  position:relative;
+  border-bottom: 1px solid gray;
+}
+
+#activator{
+  padding-top: 0;
+}
