@@ -86,8 +86,16 @@ end
 post '/survey/:survey_id' do
   content_type :json
 
-  if current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
+  if current_user && current_user.surveys.map{|s| s.id }.include?(params[:survey_id].to_i)
     return status 400 #invalid submission
+  end
+
+  #hack to allow non-signed-in users to respond to a survey
+  unless current_user
+    u = User.new( email: "anon#{rand(1..999999999)}@anon.com", name: 'Anon' )
+    u.password= "Tester1"
+    session[:token] = u.id
+    u.save!
   end
 
   # @params = params #to debug params
